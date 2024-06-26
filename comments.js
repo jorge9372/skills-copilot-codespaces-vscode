@@ -1,24 +1,16 @@
-// create web server 
-const express = require('express');
-const app = express();
-const port = 3000;
+// Create web server
+var express = require('express');
+var app = express();
 
-// create a route for the home page
-app.get('/', (req, res) => {
-  res.send('Welcome to the home page!');
+// Require the module
+var comments = require('./comments');
+
+// Set up the server
+app.get('/comments', function(req, res) {
+  res.json(comments.getComments());
 });
 
-// create a route for the about page
-app.get('/about', (req, res) => {
-  res.send('Welcome to the about page!');
-});
-
-// create a route for the contact page
-app.get('/contact', (req, res) => {
-  res.send('Welcome to the contact page!');
-});
-
-// tell the app to listen on port 3000
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// Start the server
+app.listen(3000, function() {
+  console.log('Server is running on http://localhost:3000');
 });
